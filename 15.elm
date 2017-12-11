@@ -11,6 +11,7 @@ main =
     , subscriptions = subscriptions
     }
 
+
 -- MODEL
 type alias Tiles =
     List Int
@@ -20,12 +21,15 @@ type alias Model =
     tiles: Tiles
    }
 
-
-
 init : (Model, Cmd Msg)
 init =
   (Model [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0], Cmd.none)
 
+
+-- HELPERS
+move : Tiles -> Tiles
+move tiles =
+  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]
 
 -- UPDATE
 type Msg
@@ -43,7 +47,7 @@ update msg model =
       (Model newSequence, Cmd.none)
 
     Move ->
-      (Model [1,3,2], Cmd.none)
+      (Model <| move model.tiles, Cmd.none)
 
 
 -- SUBSCRIPTIONS
