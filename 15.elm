@@ -2,6 +2,7 @@ import Html exposing (..)
 import Html.Events exposing (..)
 import Random exposing (generate)
 import Random.List exposing (shuffle)
+import List.Extra exposing (elemIndex, swapAt)
 
 main =
   Html.program
@@ -31,9 +32,14 @@ move : Tiles -> Tiles
 move tiles =
   [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]
 
+fromJust : Maybe a -> a
+fromJust x = case x of
+    Just y -> y
+    Nothing -> Debug.crash "error: fromJust Nothing"
+
 -- UPDATE
 type Msg
-  = Move
+  = Move Int
   | Scramble
   | NewSequence Tiles
 
@@ -46,9 +52,12 @@ update msg model =
     NewSequence newSequence ->
       (Model newSequence, Cmd.none)
 
-    Move ->
-      (Model <| move model.tiles, Cmd.none)
-
+    Move clickedTile ->
+      let
+          clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
+          zeroPos = fromJust (elemIndex 0 model.tiles)
+      in
+        (Model (if abs (clickedTilePos - zeroPos) == 1 then swapAt clickedTilePos zeroPos model.tiles else model.tiles), Cmd.none)
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
@@ -60,6 +69,6 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-    [ div [] (List.map (\val -> button [onClick Move] [text (toString val)]) model.tiles)
+    [ div [] (List.map (\val -> button [onClick (Move val)] [text (toString val)]) model.tiles)
         , button [onClick Scramble] [text "scramble"]
     ]
