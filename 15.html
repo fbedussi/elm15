@@ -9042,6 +9042,73 @@ var _elm_lang$html$Html_Events$Options = F2(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
+var _user$project$Main$move = function (tiles) {
+	return {
+		ctor: '::',
+		_0: 1,
+		_1: {
+			ctor: '::',
+			_0: 2,
+			_1: {
+				ctor: '::',
+				_0: 3,
+				_1: {
+					ctor: '::',
+					_0: 4,
+					_1: {
+						ctor: '::',
+						_0: 5,
+						_1: {
+							ctor: '::',
+							_0: 6,
+							_1: {
+								ctor: '::',
+								_0: 7,
+								_1: {
+									ctor: '::',
+									_0: 8,
+									_1: {
+										ctor: '::',
+										_0: 9,
+										_1: {
+											ctor: '::',
+											_0: 10,
+											_1: {
+												ctor: '::',
+												_0: 11,
+												_1: {
+													ctor: '::',
+													_0: 12,
+													_1: {
+														ctor: '::',
+														_0: 13,
+														_1: {
+															ctor: '::',
+															_0: 14,
+															_1: {
+																ctor: '::',
+																_0: 0,
+																_1: {
+																	ctor: '::',
+																	_0: 15,
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+};
 var _user$project$Main$Model = function (a) {
 	return {tiles: a};
 };
@@ -9141,19 +9208,7 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Main$Model(
-						{
-							ctor: '::',
-							_0: 1,
-							_1: {
-								ctor: '::',
-								_0: 3,
-								_1: {
-									ctor: '::',
-									_0: 2,
-									_1: {ctor: '[]'}
-								}
-							}
-						}),
+						_user$project$Main$move(model.tiles)),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
