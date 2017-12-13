@@ -1,5 +1,6 @@
 import Html exposing (..)
 import Html.Events exposing (..)
+import Html.Attributes exposing (..)
 import Random exposing (generate)
 import Random.List exposing (shuffle)
 import List.Extra exposing (elemIndex, swapAt)
@@ -66,9 +67,24 @@ subscriptions model =
 
 
 -- VIEW
+containerStyle : Attribute msg
+containerStyle =
+  style
+    [ ("width", "400px") ]
+
+tileStyle : Attribute msg
+tileStyle =
+  style
+    [ ("width", "100px") 
+      ,("height", "100px")
+      ,("padding", "0")
+      ,("box-sizing", "border-box")
+      ,("vertical-align", "top")
+    ]
+
 view : Model -> Html Msg
 view model =
-    div []
-    [ div [] (List.map (\val -> button [onClick (Move val)] [text (toString val)]) model.tiles)
+    div [ containerStyle ]
+    [ div [] (List.map (\val -> button [tileStyle, onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
         , button [onClick Scramble] [text "scramble"]
     ]
