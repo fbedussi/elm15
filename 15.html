@@ -10920,7 +10920,11 @@ var _user$project$Main$tileStyle = _elm_lang$html$Html_Attributes$style(
 					_1: {
 						ctor: '::',
 						_0: {ctor: '_Tuple2', _0: 'vertical-align', _1: 'top'},
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'font-size', _1: '2rem'},
+							_1: {ctor: '[]'}
+						}
 					}
 				}
 			}
@@ -10943,8 +10947,8 @@ var _user$project$Main$fromJust = function (x) {
 		return _elm_lang$core$Native_Utils.crashCase(
 			'Main',
 			{
-				start: {line: 37, column: 14},
-				end: {line: 39, column: 53}
+				start: {line: 34, column: 14},
+				end: {line: 36, column: 53}
 			},
 			_p0)('error: fromJust Nothing');
 	}
@@ -10966,79 +10970,22 @@ var _user$project$Main$isClickTileNextToZero = F2(
 			_elm_lang$core$Basics$abs(clickedTileRow - zeroRow),
 			1))) ? true : false;
 	});
-var _user$project$Main$move = function (tiles) {
-	return {
-		ctor: '::',
-		_0: 1,
-		_1: {
-			ctor: '::',
-			_0: 2,
-			_1: {
-				ctor: '::',
-				_0: 3,
-				_1: {
-					ctor: '::',
-					_0: 4,
-					_1: {
-						ctor: '::',
-						_0: 5,
-						_1: {
-							ctor: '::',
-							_0: 6,
-							_1: {
-								ctor: '::',
-								_0: 7,
-								_1: {
-									ctor: '::',
-									_0: 8,
-									_1: {
-										ctor: '::',
-										_0: 9,
-										_1: {
-											ctor: '::',
-											_0: 10,
-											_1: {
-												ctor: '::',
-												_0: 11,
-												_1: {
-													ctor: '::',
-													_0: 12,
-													_1: {
-														ctor: '::',
-														_0: 13,
-														_1: {
-															ctor: '::',
-															_0: 14,
-															_1: {
-																ctor: '::',
-																_0: 0,
-																_1: {
-																	ctor: '::',
-																	_0: 15,
-																	_1: {ctor: '[]'}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	};
-};
-var _user$project$Main$Model = function (a) {
-	return {tiles: a};
-};
+var _user$project$Main$swapTiles = F2(
+	function (clickedTile, tiles) {
+		var zeroPos = _user$project$Main$fromJust(
+			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, tiles));
+		var clickedTilePos = _user$project$Main$fromJust(
+			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, tiles));
+		return A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, tiles);
+	});
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {tiles: a, turns: b};
+	});
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
-	_0: _user$project$Main$Model(
+	_0: A2(
+		_user$project$Main$Model,
 		{
 			ctor: '::',
 			_0: 1,
@@ -11103,18 +11050,10 @@ var _user$project$Main$init = {
 					}
 				}
 			}
-		}),
+		},
+		0),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _user$project$Main$swapTiles = F2(
-	function (clickedTile, model) {
-		var zeroPos = _user$project$Main$fromJust(
-			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, model.tiles));
-		var clickedTilePos = _user$project$Main$fromJust(
-			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, model.tiles));
-		return _user$project$Main$Model(
-			A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, model.tiles));
-	});
 var _user$project$Main$NewSequence = function (a) {
 	return {ctor: 'NewSequence', _0: a};
 };
@@ -11134,14 +11073,17 @@ var _user$project$Main$update = F2(
 			case 'NewSequence':
 				return {
 					ctor: '_Tuple2',
-					_0: _user$project$Main$Model(_p2._0),
+					_0: A2(_user$project$Main$Model, _p2._0, model.turns),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
 				var _p3 = _p2._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_user$project$Main$isClickTileNextToZero, _p3, model) ? A2(_user$project$Main$swapTiles, _p3, model) : model,
+					_0: A2(_user$project$Main$isClickTileNextToZero, _p3, model) ? A2(
+						_user$project$Main$Model,
+						A2(_user$project$Main$swapTiles, _p3, model.tiles),
+						model.turns + 1) : model,
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
@@ -11163,44 +11105,56 @@ var _user$project$Main$view = function (model) {
 			_0: A2(
 				_elm_lang$html$Html$div,
 				{ctor: '[]'},
-				A2(
-					_elm_lang$core$List$map,
-					function (val) {
-						return A2(
-							_elm_lang$html$Html$button,
-							{
-								ctor: '::',
-								_0: _user$project$Main$tileStyle,
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(
-										_user$project$Main$Move(val)),
-									_1: {ctor: '[]'}
-								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text(
-									(!_elm_lang$core$Native_Utils.eq(val, 0)) ? _elm_lang$core$Basics$toString(val) : ''),
-								_1: {ctor: '[]'}
-							});
-					},
-					model.tiles)),
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(model.turns)),
+					_1: {ctor: '[]'}
+				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$button,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Scramble),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text('scramble'),
-						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					A2(
+						_elm_lang$core$List$map,
+						function (val) {
+							return A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _user$project$Main$tileStyle,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(
+											_user$project$Main$Move(val)),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										(!_elm_lang$core$Native_Utils.eq(val, 0)) ? _elm_lang$core$Basics$toString(val) : ''),
+									_1: {ctor: '[]'}
+								});
+						},
+						model.tiles)),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Scramble),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('scramble'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 };

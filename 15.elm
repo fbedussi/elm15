@@ -20,19 +20,16 @@ type alias Tiles =
 
 type alias Model =
   {
-    tiles: Tiles
+    tiles: Tiles,
+    turns: Int
    }
 
 init : (Model, Cmd Msg)
 init =
-  (Model [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0], Cmd.none)
+  (Model [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0] 0, Cmd.none)
 
 
 -- HELPERS
-move : Tiles -> Tiles
-move tiles =
-  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15]
-
 fromJust : Maybe a -> a
 fromJust x = case x of
     Just y -> y
@@ -57,13 +54,13 @@ isClickTileNextToZero clickedTile model =
     else
       False
 
-swapTiles : Int -> Model -> Model
-swapTiles clickedTile model = 
+swapTiles : Int -> Tiles -> Tiles
+swapTiles clickedTile tiles = 
   let
-    clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
-    zeroPos = fromJust (elemIndex 0 model.tiles)
+    clickedTilePos = fromJust (elemIndex clickedTile tiles)
+    zeroPos = fromJust (elemIndex 0 tiles)
   in
-    Model <| swapAt clickedTilePos zeroPos model.tiles
+    swapAt clickedTilePos zeroPos tiles
 
 -- UPDATE
 type Msg
@@ -78,10 +75,10 @@ update msg model =
       (model, generate NewSequence (shuffle model.tiles))
 
     NewSequence newSequence ->
-      (Model newSequence, Cmd.none)
+      (Model newSequence model.turns, Cmd.none)
 
     Move clickedTile ->
-        (if isClickTileNextToZero clickedTile model then swapTiles clickedTile model else model, Cmd.none)
+        (if isClickTileNextToZero clickedTile model then Model (swapTiles clickedTile model.tiles) (model.turns + 1) else model, Cmd.none)
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
@@ -103,11 +100,14 @@ tileStyle =
       ,("padding", "0")
       ,("box-sizing", "border-box")
       ,("vertical-align", "top")
+      ,("font-size", "2rem")
     ]
 
 view : Model -> Html Msg
 view model =
     div [ containerStyle ]
-    [ div [] (List.map (\val -> button [tileStyle, onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
-        , button [onClick Scramble] [text "scramble"]
+    [ 
+      div [] [ text <| toString model.turns ]
+      ,div [] (List.map (\val -> button [tileStyle, onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
+      ,button [onClick Scramble] [text "scramble"]
     ]
