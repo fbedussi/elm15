@@ -38,6 +38,33 @@ fromJust x = case x of
     Just y -> y
     Nothing -> Debug.crash "error: fromJust Nothing"
 
+isClickTileNextToZero : Int -> Model -> Bool
+isClickTileNextToZero clickedTile model =
+  let
+    clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
+    zeroPos = fromJust (elemIndex 0 model.tiles)
+    tilesPerRow = 4
+    clickedTileRow = clickedTilePos // tilesPerRow
+    zeroRow = zeroPos // tilesPerRow
+    clickedTileCol = clickedTilePos % tilesPerRow
+    zeroCol = zeroPos % tilesPerRow
+  in
+    if 
+      clickedTileRow == zeroRow && abs (clickedTileCol - zeroCol) == 1 
+      || (clickedTileCol == zeroCol && abs (clickedTileRow - zeroRow) == 1)
+    then 
+      True
+    else
+      False
+
+swapTiles : Int -> Model -> Model
+swapTiles clickedTile model = 
+  let
+    clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
+    zeroPos = fromJust (elemIndex 0 model.tiles)
+  in
+    Model <| swapAt clickedTilePos zeroPos model.tiles
+
 -- UPDATE
 type Msg
   = Move Int
@@ -54,11 +81,7 @@ update msg model =
       (Model newSequence, Cmd.none)
 
     Move clickedTile ->
-      let
-          clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
-          zeroPos = fromJust (elemIndex 0 model.tiles)
-      in
-        (Model (if abs (clickedTilePos - zeroPos) == 1 then swapAt clickedTilePos zeroPos model.tiles else model.tiles), Cmd.none)
+        (if isClickTileNextToZero clickedTile model then swapTiles clickedTile model else model, Cmd.none)
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
