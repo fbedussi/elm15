@@ -30,16 +30,11 @@ init =
 
 
 -- HELPERS
-fromJust : Maybe a -> a
-fromJust x = case x of
-    Just y -> y
-    Nothing -> Debug.crash "error: fromJust Nothing"
-
 isClickTileNextToZero : Int -> Model -> Bool
 isClickTileNextToZero clickedTile model =
   let
-    clickedTilePos = fromJust (elemIndex clickedTile model.tiles)
-    zeroPos = fromJust (elemIndex 0 model.tiles)
+    clickedTilePos = elemIndex clickedTile model.tiles |> Maybe.withDefault 0
+    zeroPos = elemIndex 0 model.tiles |> Maybe.withDefault (List.length model.tiles)
     tilesPerRow = 4
     clickedTileRow = clickedTilePos // tilesPerRow
     zeroRow = zeroPos // tilesPerRow
@@ -57,8 +52,8 @@ isClickTileNextToZero clickedTile model =
 swapTiles : Int -> Tiles -> Tiles
 swapTiles clickedTile tiles = 
   let
-    clickedTilePos = fromJust (elemIndex clickedTile tiles)
-    zeroPos = fromJust (elemIndex 0 tiles)
+    clickedTilePos = Maybe.withDefault 0 (elemIndex clickedTile tiles)
+    zeroPos = Maybe.withDefault 0 (elemIndex 0 tiles)
   in
     swapAt clickedTilePos zeroPos tiles
 

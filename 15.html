@@ -10939,28 +10939,30 @@ var _user$project$Main$containerStyle = _elm_lang$html$Html_Attributes$style(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$fromJust = function (x) {
-	var _p0 = x;
-	if (_p0.ctor === 'Just') {
-		return _p0._0;
-	} else {
-		return _elm_lang$core$Native_Utils.crashCase(
-			'Main',
-			{
-				start: {line: 34, column: 14},
-				end: {line: 36, column: 53}
-			},
-			_p0)('error: fromJust Nothing');
-	}
-};
+var _user$project$Main$swapTiles = F2(
+	function (clickedTile, tiles) {
+		var zeroPos = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, tiles));
+		var clickedTilePos = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, tiles));
+		return A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, tiles);
+	});
 var _user$project$Main$isClickTileNextToZero = F2(
 	function (clickedTile, model) {
 		var tilesPerRow = 4;
-		var zeroPos = _user$project$Main$fromJust(
+		var zeroPos = A2(
+			_elm_lang$core$Maybe$withDefault,
+			_elm_lang$core$List$length(model.tiles),
 			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, model.tiles));
 		var zeroRow = (zeroPos / tilesPerRow) | 0;
 		var zeroCol = A2(_elm_lang$core$Basics_ops['%'], zeroPos, tilesPerRow);
-		var clickedTilePos = _user$project$Main$fromJust(
+		var clickedTilePos = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
 			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, model.tiles));
 		var clickedTileRow = (clickedTilePos / tilesPerRow) | 0;
 		var clickedTileCol = A2(_elm_lang$core$Basics_ops['%'], clickedTilePos, tilesPerRow);
@@ -10969,14 +10971,6 @@ var _user$project$Main$isClickTileNextToZero = F2(
 			1)) || (_elm_lang$core$Native_Utils.eq(clickedTileCol, zeroCol) && _elm_lang$core$Native_Utils.eq(
 			_elm_lang$core$Basics$abs(clickedTileRow - zeroRow),
 			1))) ? true : false;
-	});
-var _user$project$Main$swapTiles = F2(
-	function (clickedTile, tiles) {
-		var zeroPos = _user$project$Main$fromJust(
-			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, tiles));
-		var clickedTilePos = _user$project$Main$fromJust(
-			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, tiles));
-		return A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, tiles);
 	});
 var _user$project$Main$Model = F2(
 	function (a, b) {
@@ -11059,8 +11053,8 @@ var _user$project$Main$NewSequence = function (a) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
 			case 'Scramble':
 				return {
 					ctor: '_Tuple2',
@@ -11073,16 +11067,16 @@ var _user$project$Main$update = F2(
 			case 'NewSequence':
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_user$project$Main$Model, _p2._0, model.turns),
+					_0: A2(_user$project$Main$Model, _p0._0, model.turns),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				var _p3 = _p2._0;
+				var _p1 = _p0._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_user$project$Main$isClickTileNextToZero, _p3, model) ? A2(
+					_0: A2(_user$project$Main$isClickTileNextToZero, _p1, model) ? A2(
 						_user$project$Main$Model,
-						A2(_user$project$Main$swapTiles, _p3, model.tiles),
+						A2(_user$project$Main$swapTiles, _p1, model.tiles),
 						model.turns + 1) : model,
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
