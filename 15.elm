@@ -21,12 +21,19 @@ type alias Tiles =
 type alias Model =
   {
     tiles: Tiles,
-    turns: Int
+    turns: Int,
+    success: Bool,
+    correctSequence: Tiles
    }
 
 init : (Model, Cmd Msg)
 init =
-  (Model [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0] 0, Cmd.none)
+  (Model 
+    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
+    0
+    False
+    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
+  , Cmd.none)
 
 
 -- HELPERS
@@ -62,6 +69,7 @@ type Msg
   = Move Int
   | Scramble
   | NewSequence Tiles
+  | Reset
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -70,10 +78,32 @@ update msg model =
       (model, generate NewSequence (shuffle model.tiles))
 
     NewSequence newSequence ->
-      (Model newSequence model.turns, Cmd.none)
+      (Model
+        newSequence
+        model.turns
+        (newSequence == model.correctSequence)
+        model.correctSequence
+      , Cmd.none)
 
-    Move clickedTile ->
-        (if isClickTileNextToZero clickedTile model then Model (swapTiles clickedTile model.tiles) (model.turns + 1) else model, Cmd.none)
+    Move clickedTile ->    
+        (
+          if 
+            isClickTileNextToZero clickedTile model 
+          then
+            let 
+              newTiles = swapTiles clickedTile model.tiles
+            in
+              Model 
+                newTiles
+                (model.turns + 1)
+                (newTiles == model.correctSequence)
+                model.correctSequence
+          else
+            model
+        , Cmd.none)
+    
+    Reset ->
+      init
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
@@ -85,13 +115,15 @@ subscriptions model =
 containerStyle : Attribute msg
 containerStyle =
   style
-    [ ("width", "400px") ]
+    [ ("width", "80vmin")
+      ,("margin", "0 auto")
+     ]
 
 tileStyle : Attribute msg
 tileStyle =
   style
-    [ ("width", "100px") 
-      ,("height", "100px")
+    [ ("width", "20vmin") 
+      ,("height", "20vmin")
       ,("padding", "0")
       ,("box-sizing", "border-box")
       ,("vertical-align", "top")
@@ -102,7 +134,9 @@ view : Model -> Html Msg
 view model =
     div [ containerStyle ]
     [ 
-      div [] [ text <| toString model.turns ]
+      div [style [("display", (if model.success then "block" else "none"))]] [ text "Complete!" ]
+      ,div [] [ text <| toString model.turns ]
       ,div [] (List.map (\val -> button [tileStyle, onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
       ,button [onClick Scramble] [text "scramble"]
+      ,button [onClick Reset] [text "reset"]
     ]

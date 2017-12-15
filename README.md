@@ -1,1 +1,1 @@
-An elm implementation of the game of fifteen
+An elm implementation of the 15-puzzle

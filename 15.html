@@ -10907,10 +10907,10 @@ var _elm_lang$html$Html_Events$Options = F2(
 var _user$project$Main$tileStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '100px'},
+		_0: {ctor: '_Tuple2', _0: 'width', _1: '20vmin'},
 		_1: {
 			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'height', _1: '100px'},
+			_0: {ctor: '_Tuple2', _0: 'height', _1: '20vmin'},
 			_1: {
 				ctor: '::',
 				_0: {ctor: '_Tuple2', _0: 'padding', _1: '0'},
@@ -10933,8 +10933,12 @@ var _user$project$Main$tileStyle = _elm_lang$html$Html_Attributes$style(
 var _user$project$Main$containerStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '400px'},
-		_1: {ctor: '[]'}
+		_0: {ctor: '_Tuple2', _0: 'width', _1: '80vmin'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
+			_1: {ctor: '[]'}
+		}
 	});
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
@@ -10972,13 +10976,13 @@ var _user$project$Main$isClickTileNextToZero = F2(
 			_elm_lang$core$Basics$abs(clickedTileRow - zeroRow),
 			1))) ? true : false;
 	});
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {tiles: a, turns: b};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {tiles: a, turns: b, success: c, correctSequence: d};
 	});
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
-	_0: A2(
+	_0: A4(
 		_user$project$Main$Model,
 		{
 			ctor: '::',
@@ -11045,9 +11049,76 @@ var _user$project$Main$init = {
 				}
 			}
 		},
-		0),
+		0,
+		false,
+		{
+			ctor: '::',
+			_0: 1,
+			_1: {
+				ctor: '::',
+				_0: 2,
+				_1: {
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {
+								ctor: '::',
+								_0: 6,
+								_1: {
+									ctor: '::',
+									_0: 7,
+									_1: {
+										ctor: '::',
+										_0: 8,
+										_1: {
+											ctor: '::',
+											_0: 9,
+											_1: {
+												ctor: '::',
+												_0: 10,
+												_1: {
+													ctor: '::',
+													_0: 11,
+													_1: {
+														ctor: '::',
+														_0: 12,
+														_1: {
+															ctor: '::',
+															_0: 13,
+															_1: {
+																ctor: '::',
+																_0: 14,
+																_1: {
+																	ctor: '::',
+																	_0: 15,
+																	_1: {
+																		ctor: '::',
+																		_0: 0,
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
+var _user$project$Main$Reset = {ctor: 'Reset'};
 var _user$project$Main$NewSequence = function (a) {
 	return {ctor: 'NewSequence', _0: a};
 };
@@ -11065,21 +11136,38 @@ var _user$project$Main$update = F2(
 						_elm_community$random_extra$Random_List$shuffle(model.tiles))
 				};
 			case 'NewSequence':
-				return {
-					ctor: '_Tuple2',
-					_0: A2(_user$project$Main$Model, _p0._0, model.turns),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			default:
 				var _p1 = _p0._0;
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_user$project$Main$isClickTileNextToZero, _p1, model) ? A2(
+					_0: A4(
 						_user$project$Main$Model,
-						A2(_user$project$Main$swapTiles, _p1, model.tiles),
-						model.turns + 1) : model,
+						_p1,
+						model.turns,
+						_elm_lang$core$Native_Utils.eq(_p1, model.correctSequence),
+						model.correctSequence),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'Move':
+				var _p2 = _p0._0;
+				return {
+					ctor: '_Tuple2',
+					_0: function () {
+						if (A2(_user$project$Main$isClickTileNextToZero, _p2, model)) {
+							var newTiles = A2(_user$project$Main$swapTiles, _p2, model.tiles);
+							return A4(
+								_user$project$Main$Model,
+								newTiles,
+								model.turns + 1,
+								_elm_lang$core$Native_Utils.eq(newTiles, model.correctSequence),
+								model.correctSequence);
+						} else {
+							return model;
+						}
+					}(),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return _user$project$Main$init;
 		}
 	});
 var _user$project$Main$Scramble = {ctor: 'Scramble'};
@@ -11098,11 +11186,23 @@ var _user$project$Main$view = function (model) {
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
-				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						_elm_lang$core$Basics$toString(model.turns)),
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'display',
+								_1: model.success ? 'block' : 'none'
+							},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Complete!'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -11110,44 +11210,71 @@ var _user$project$Main$view = function (model) {
 				_0: A2(
 					_elm_lang$html$Html$div,
 					{ctor: '[]'},
-					A2(
-						_elm_lang$core$List$map,
-						function (val) {
-							return A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _user$project$Main$tileStyle,
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(
-											_user$project$Main$Move(val)),
-										_1: {ctor: '[]'}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(
-										(!_elm_lang$core$Native_Utils.eq(val, 0)) ? _elm_lang$core$Basics$toString(val) : ''),
-									_1: {ctor: '[]'}
-								});
-						},
-						model.tiles)),
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(model.turns)),
+						_1: {ctor: '[]'}
+					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$button,
-						{
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						A2(
+							_elm_lang$core$List$map,
+							function (val) {
+								return A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _user$project$Main$tileStyle,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onClick(
+												_user$project$Main$Move(val)),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											(!_elm_lang$core$Native_Utils.eq(val, 0)) ? _elm_lang$core$Basics$toString(val) : ''),
+										_1: {ctor: '[]'}
+									});
+							},
+							model.tiles)),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Scramble),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('scramble'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Scramble),
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Reset),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('reset'),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('scramble'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
+						}
+					}
 				}
 			}
 		});
