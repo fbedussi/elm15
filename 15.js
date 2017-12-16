@@ -10989,7 +10989,11 @@ var _user$project$Main$buttonStyle = _elm_lang$html$Html_Attributes$style(
 									_1: {
 										ctor: '::',
 										_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '2rem'},
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'appearence', _1: 'none'},
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}

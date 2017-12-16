@@ -143,6 +143,7 @@ buttonStyle =
       ,("border-radius", "0")
       ,("margin-right", "2rem")
       ,("margin-top", "2rem")
+      ,("appearence", "none")
     ]
 
 wrapperStyle : Attribute msg
