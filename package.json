@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "make": "elm make 15.elm --output 15.html",
-    "dev": "chokidar '**/*.elm' -c 'npm run make"
+    "make": "elm make 15.elm --output 15.js",
+    "dev": "chokidar '**/*.elm' -c 'npm run make'"
   },
   "keywords": [],
   "author": "",
