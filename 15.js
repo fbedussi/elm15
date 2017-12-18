@@ -10941,13 +10941,13 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Main$turnsStyle = _elm_lang$html$Html_Attributes$style(
+var _fbedussi$elm15$Fifteen$turnsStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'font-size', _1: '2rem'},
 		_1: {ctor: '[]'}
 	});
-var _user$project$Main$wrapperStyle = _elm_lang$html$Html_Attributes$style(
+var _fbedussi$elm15$Fifteen$wrapperStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
@@ -10961,7 +10961,7 @@ var _user$project$Main$wrapperStyle = _elm_lang$html$Html_Attributes$style(
 			}
 		}
 	});
-var _user$project$Main$buttonStyle = _elm_lang$html$Html_Attributes$style(
+var _fbedussi$elm15$Fifteen$buttonStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'width', _1: '30vmin'},
@@ -11003,7 +11003,7 @@ var _user$project$Main$buttonStyle = _elm_lang$html$Html_Attributes$style(
 			}
 		}
 	});
-var _user$project$Main$tileStyle = _elm_lang$html$Html_Attributes$style(
+var _fbedussi$elm15$Fifteen$tileStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'width', _1: '20vmin'},
@@ -11033,7 +11033,7 @@ var _user$project$Main$tileStyle = _elm_lang$html$Html_Attributes$style(
 			}
 		}
 	});
-var _user$project$Main$containerStyle = _elm_lang$html$Html_Attributes$style(
+var _fbedussi$elm15$Fifteen$containerStyle = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
 		_0: {ctor: '_Tuple2', _0: 'width', _1: '80vmin'},
@@ -11043,10 +11043,10 @@ var _user$project$Main$containerStyle = _elm_lang$html$Html_Attributes$style(
 			_1: {ctor: '[]'}
 		}
 	});
-var _user$project$Main$subscriptions = function (model) {
+var _fbedussi$elm15$Fifteen$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$swapTiles = F2(
+var _fbedussi$elm15$Fifteen$swapTiles = F2(
 	function (clickedTile, tiles) {
 		var zeroPos = A2(
 			_elm_lang$core$Maybe$withDefault,
@@ -11058,7 +11058,7 @@ var _user$project$Main$swapTiles = F2(
 			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, tiles));
 		return A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, tiles);
 	});
-var _user$project$Main$isClickTileNextToZero = F2(
+var _fbedussi$elm15$Fifteen$isClickTileNextToZero = F2(
 	function (clickedTile, model) {
 		var tilesPerRow = 4;
 		var zeroPos = A2(
@@ -11079,14 +11079,14 @@ var _user$project$Main$isClickTileNextToZero = F2(
 			_elm_lang$core$Basics$abs(clickedTileRow - zeroRow),
 			1))) ? true : false;
 	});
-var _user$project$Main$Model = F4(
+var _fbedussi$elm15$Fifteen$Model = F4(
 	function (a, b, c, d) {
 		return {tiles: a, turns: b, success: c, correctSequence: d};
 	});
-var _user$project$Main$init = {
+var _fbedussi$elm15$Fifteen$init = {
 	ctor: '_Tuple2',
 	_0: A4(
-		_user$project$Main$Model,
+		_fbedussi$elm15$Fifteen$Model,
 		{
 			ctor: '::',
 			_0: 1,
@@ -11221,11 +11221,11 @@ var _user$project$Main$init = {
 		}),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _user$project$Main$Reset = {ctor: 'Reset'};
-var _user$project$Main$NewSequence = function (a) {
+var _fbedussi$elm15$Fifteen$Reset = {ctor: 'Reset'};
+var _fbedussi$elm15$Fifteen$NewSequence = function (a) {
 	return {ctor: 'NewSequence', _0: a};
 };
-var _user$project$Main$update = F2(
+var _fbedussi$elm15$Fifteen$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
@@ -11235,7 +11235,7 @@ var _user$project$Main$update = F2(
 					_0: model,
 					_1: A2(
 						_elm_lang$core$Random$generate,
-						_user$project$Main$NewSequence,
+						_fbedussi$elm15$Fifteen$NewSequence,
 						_elm_community$random_extra$Random_List$shuffle(model.tiles))
 				};
 			case 'NewSequence':
@@ -11243,7 +11243,7 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: A4(
-						_user$project$Main$Model,
+						_fbedussi$elm15$Fifteen$Model,
 						_p1,
 						model.turns,
 						_elm_lang$core$Native_Utils.eq(_p1, model.correctSequence),
@@ -11255,10 +11255,10 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: function () {
-						if (A2(_user$project$Main$isClickTileNextToZero, _p2, model)) {
-							var newTiles = A2(_user$project$Main$swapTiles, _p2, model.tiles);
+						if (A2(_fbedussi$elm15$Fifteen$isClickTileNextToZero, _p2, model)) {
+							var newTiles = A2(_fbedussi$elm15$Fifteen$swapTiles, _p2, model.tiles);
 							return A4(
-								_user$project$Main$Model,
+								_fbedussi$elm15$Fifteen$Model,
 								newTiles,
 								model.turns + 1,
 								_elm_lang$core$Native_Utils.eq(newTiles, model.correctSequence),
@@ -11270,19 +11270,19 @@ var _user$project$Main$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				return _user$project$Main$init;
+				return _fbedussi$elm15$Fifteen$init;
 		}
 	});
-var _user$project$Main$Scramble = {ctor: 'Scramble'};
-var _user$project$Main$Move = function (a) {
+var _fbedussi$elm15$Fifteen$Scramble = {ctor: 'Scramble'};
+var _fbedussi$elm15$Fifteen$Move = function (a) {
 	return {ctor: 'Move', _0: a};
 };
-var _user$project$Main$view = function (model) {
+var _fbedussi$elm15$Fifteen$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _user$project$Main$containerStyle,
+			_0: _fbedussi$elm15$Fifteen$containerStyle,
 			_1: {ctor: '[]'}
 		},
 		{
@@ -11320,11 +11320,11 @@ var _user$project$Main$view = function (model) {
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _user$project$Main$tileStyle,
+									_0: _fbedussi$elm15$Fifteen$tileStyle,
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$html$Html_Events$onClick(
-											_user$project$Main$Move(val)),
+											_fbedussi$elm15$Fifteen$Move(val)),
 										_1: {ctor: '[]'}
 									}
 								},
@@ -11342,7 +11342,7 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _user$project$Main$wrapperStyle,
+							_0: _fbedussi$elm15$Fifteen$wrapperStyle,
 							_1: {ctor: '[]'}
 						},
 						{
@@ -11351,10 +11351,10 @@ var _user$project$Main$view = function (model) {
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _user$project$Main$buttonStyle,
+									_0: _fbedussi$elm15$Fifteen$buttonStyle,
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Scramble),
+										_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Scramble),
 										_1: {ctor: '[]'}
 									}
 								},
@@ -11369,10 +11369,10 @@ var _user$project$Main$view = function (model) {
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _user$project$Main$buttonStyle,
+										_0: _fbedussi$elm15$Fifteen$buttonStyle,
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Reset),
+											_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Reset),
 											_1: {ctor: '[]'}
 										}
 									},
@@ -11387,7 +11387,7 @@ var _user$project$Main$view = function (model) {
 										_elm_lang$html$Html$div,
 										{
 											ctor: '::',
-											_0: _user$project$Main$turnsStyle,
+											_0: _fbedussi$elm15$Fifteen$turnsStyle,
 											_1: {ctor: '[]'}
 										},
 										{
@@ -11405,13 +11405,13 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
+var _fbedussi$elm15$Fifteen$main = _elm_lang$html$Html$program(
+	{init: _fbedussi$elm15$Fifteen$init, view: _fbedussi$elm15$Fifteen$view, update: _fbedussi$elm15$Fifteen$update, subscriptions: _fbedussi$elm15$Fifteen$subscriptions})();
 
 var Elm = {};
-Elm['Main'] = Elm['Main'] || {};
-if (typeof _user$project$Main$main !== 'undefined') {
-    _user$project$Main$main(Elm['Main'], 'Main', undefined);
+Elm['Fifteen'] = Elm['Fifteen'] || {};
+if (typeof _fbedussi$elm15$Fifteen$main !== 'undefined') {
+    _fbedussi$elm15$Fifteen$main(Elm['Fifteen'], 'Fifteen', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
