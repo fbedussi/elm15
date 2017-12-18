@@ -39,11 +39,11 @@ init =
 
 
 -- HELPERS
-isClickTileNextToZero : Int -> Model -> Bool
-isClickTileNextToZero clickedTile model =
+isClickTileNextToZero : Int -> Tiles -> Bool
+isClickTileNextToZero clickedTile tiles =
   let
-    clickedTilePos = elemIndex clickedTile model.tiles |> Maybe.withDefault 0
-    zeroPos = elemIndex 0 model.tiles |> Maybe.withDefault (List.length model.tiles)
+    clickedTilePos = elemIndex clickedTile tiles |> Maybe.withDefault 0
+    zeroPos = elemIndex 0 tiles |> Maybe.withDefault (List.length tiles)
     tilesPerRow = 4
     clickedTileRow = clickedTilePos // tilesPerRow
     zeroRow = zeroPos // tilesPerRow
@@ -90,7 +90,7 @@ update msg model =
     Move clickedTile ->    
         (
           if 
-            isClickTileNextToZero clickedTile model 
+            isClickTileNextToZero clickedTile model.tiles
           then
             let 
               newTiles = swapTiles clickedTile model.tiles
