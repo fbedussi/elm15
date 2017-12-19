@@ -10941,108 +10941,6 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _fbedussi$elm15$Fifteen$turnsStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'font-size', _1: '2rem'},
-		_1: {ctor: '[]'}
-	});
-var _fbedussi$elm15$Fifteen$wrapperStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'justify-content', _1: 'space-between'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'align-items', _1: 'center'},
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _fbedussi$elm15$Fifteen$buttonStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '30vmin'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'height', _1: '10vmin'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'padding', _1: '0'},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'box-sizing', _1: 'border-box'},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'vertical-align', _1: 'top'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'font-size', _1: '2rem'},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '0'},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'margin-right', _1: '2rem'},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'margin-top', _1: '2rem'},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'appearence', _1: 'none'},
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _fbedussi$elm15$Fifteen$tileStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '20vmin'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'height', _1: '20vmin'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'padding', _1: '0'},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'box-sizing', _1: 'border-box'},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'vertical-align', _1: 'top'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'font-size', _1: '2rem'},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '0'},
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _fbedussi$elm15$Fifteen$containerStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'width', _1: '80vmin'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
-			_1: {ctor: '[]'}
-		}
-	});
 var _fbedussi$elm15$Fifteen$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -11059,18 +10957,18 @@ var _fbedussi$elm15$Fifteen$swapTiles = F2(
 		return A3(_elm_community$list_extra$List_Extra$swapAt, clickedTilePos, zeroPos, tiles);
 	});
 var _fbedussi$elm15$Fifteen$isClickTileNextToZero = F2(
-	function (clickedTile, model) {
+	function (clickedTile, tiles) {
 		var tilesPerRow = 4;
 		var zeroPos = A2(
 			_elm_lang$core$Maybe$withDefault,
-			_elm_lang$core$List$length(model.tiles),
-			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, model.tiles));
+			_elm_lang$core$List$length(tiles),
+			A2(_elm_community$list_extra$List_Extra$elemIndex, 0, tiles));
 		var zeroRow = (zeroPos / tilesPerRow) | 0;
 		var zeroCol = A2(_elm_lang$core$Basics_ops['%'], zeroPos, tilesPerRow);
 		var clickedTilePos = A2(
 			_elm_lang$core$Maybe$withDefault,
 			0,
-			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, model.tiles));
+			A2(_elm_community$list_extra$List_Extra$elemIndex, clickedTile, tiles));
 		var clickedTileRow = (clickedTilePos / tilesPerRow) | 0;
 		var clickedTileCol = A2(_elm_lang$core$Basics_ops['%'], clickedTilePos, tilesPerRow);
 		return ((_elm_lang$core$Native_Utils.eq(clickedTileRow, zeroRow) && _elm_lang$core$Native_Utils.eq(
@@ -11255,7 +11153,7 @@ var _fbedussi$elm15$Fifteen$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: function () {
-						if (A2(_fbedussi$elm15$Fifteen$isClickTileNextToZero, _p2, model)) {
+						if (A2(_fbedussi$elm15$Fifteen$isClickTileNextToZero, _p2, model.tiles)) {
 							var newTiles = A2(_fbedussi$elm15$Fifteen$swapTiles, _p2, model.tiles);
 							return A4(
 								_fbedussi$elm15$Fifteen$Model,
@@ -11282,7 +11180,7 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _fbedussi$elm15$Fifteen$containerStyle,
+			_0: _elm_lang$html$Html_Attributes$class('app'),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -11312,7 +11210,11 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$html$Html$div,
-					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('board'),
+						_1: {ctor: '[]'}
+					},
 					A2(
 						_elm_lang$core$List$map,
 						function (val) {
@@ -11320,7 +11222,8 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _fbedussi$elm15$Fifteen$tileStyle,
+									_0: _elm_lang$html$Html_Attributes$class(
+										(!_elm_lang$core$Native_Utils.eq(val, 0)) ? 'tile' : 'tile is-empty'),
 									_1: {
 										ctor: '::',
 										_0: _elm_lang$html$Html_Events$onClick(
@@ -11342,26 +11245,49 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _fbedussi$elm15$Fifteen$wrapperStyle,
+							_0: _elm_lang$html$Html_Attributes$class('controls'),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
 							_0: A2(
-								_elm_lang$html$Html$button,
+								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _fbedussi$elm15$Fifteen$buttonStyle,
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Scramble),
-										_1: {ctor: '[]'}
-									}
+									_0: _elm_lang$html$Html_Attributes$class('turnsWrapper'),
+									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text('scramble'),
-									_1: {ctor: '[]'}
+									_0: A2(
+										_elm_lang$html$Html$span,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('turnsLabel'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Turns: '),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$span,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('turns'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(
+													_elm_lang$core$Basics$toString(model.turns)),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}),
 							_1: {
 								ctor: '::',
@@ -11369,31 +11295,34 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _fbedussi$elm15$Fifteen$buttonStyle,
+										_0: _elm_lang$html$Html_Attributes$class('btn scrambleBtn'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Reset),
+											_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Scramble),
 											_1: {ctor: '[]'}
 										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('reset'),
+										_0: _elm_lang$html$Html$text('scramble'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$div,
+										_elm_lang$html$Html$button,
 										{
 											ctor: '::',
-											_0: _fbedussi$elm15$Fifteen$turnsStyle,
-											_1: {ctor: '[]'}
+											_0: _elm_lang$html$Html_Attributes$class('btn resetBtn'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Reset),
+												_1: {ctor: '[]'}
+											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text(
-												_elm_lang$core$Basics$toString(model.turns)),
+											_0: _elm_lang$html$Html$text('reset'),
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}

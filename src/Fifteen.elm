@@ -114,65 +114,18 @@ subscriptions model =
 
 
 -- VIEW
-containerStyle : Attribute msg
-containerStyle =
-  style
-    [ ("width", "80vmin")
-      ,("margin", "0 auto")
-     ]
-
-tileStyle : Attribute msg
-tileStyle =
-  style
-    [ ("width", "20vmin") 
-      ,("height", "20vmin")
-      ,("padding", "0")
-      ,("box-sizing", "border-box")
-      ,("vertical-align", "top")
-      ,("font-size", "2rem")
-      ,("border-radius", "0")
-    ]
-
-buttonStyle : Attribute msg
-buttonStyle =
-  style
-    [ ("width", "30vmin") 
-      ,("height", "10vmin")
-      ,("padding", "0")
-      ,("box-sizing", "border-box")
-      ,("vertical-align", "top")
-      ,("font-size", "2rem")
-      ,("border-radius", "0")
-      ,("margin-right", "2rem")
-      ,("margin-top", "2rem")
-      ,("appearence", "none")
-    ]
-
-wrapperStyle : Attribute msg
-wrapperStyle =
-  style
-    [ ("display", "flex") 
-      ,("justify-content", "space-between")
-      ,("align-items", "center")
-    ]
-
-turnsStyle : Attribute msg
-turnsStyle =
-  style
-    [ ("font-size", "2rem") 
-    ]
-
-
 view : Model -> Html Msg
 view model =
-    div [ containerStyle ]
+    div [ class "app" ]
     [ 
       div [style [("display", (if model.success then "block" else "none"))]] [ text "Complete!" ]
-      
-      ,div [] (List.map (\val -> button [tileStyle, onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
-      ,div [wrapperStyle] [
-        button [buttonStyle, onClick Scramble] [text "scramble"]
-        ,button [buttonStyle, onClick Reset] [text "reset"]
-        ,div [turnsStyle] [ text <| toString model.turns ]
+      , div [ class "board"] (List.map (\val -> button [ class (if val /= 0 then "tile" else "tile is-empty"), onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
+      ,div [class "controls"] [
+        div [class "turnsWrapper"] [ 
+          span [class "turnsLabel"] [text "Turns: "]
+          ,span [class "turns"] [ text <| toString model.turns ] 
+        ]
+        ,button [class "btn scrambleBtn", onClick Scramble ] [text "scramble"]
+        ,button [class "btn resetBtn", onClick Reset] [text "reset"]
       ]
     ]

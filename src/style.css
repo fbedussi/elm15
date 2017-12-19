@@ -1,0 +1,114 @@
+:root {
+    --primaryColor: #c7c7c7; 
+    --secondaryColor: #fff;
+    --tertiaryColor: #0a6187;
+    --accentColor: #f25944;
+    --accent2Color: #243752;
+    --boardColor: var(--primaryColor);
+    --tileColor: var(--tertiaryColor);
+    --buttonColor: var(--tertiaryColor);
+    --buttonTextColor: var(--secondaryColor);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: solid 1px var(--accentColor);
+}
+
+body {
+    font-family: sans-serif;
+}
+
+html,
+body,
+#main,
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.board {
+    flex-shrink: 0;
+    width: calc(92vmin + 8px);
+    margin: 3vmin;
+    padding: 2vmin;
+    background-color: var(--boardColor);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+     
+.tile {
+    background: var(--tileColor);
+    border: none;
+    display: block;
+    width: 22vmin;
+    height: 22vmin;
+    padding: 0;
+    margin: 1px;
+    box-sizing: border-box;
+    font-size: 2rem;
+    border-radius: 2px;
+    -webkit-appearence: none;    
+    color: var(--secondaryColor);
+}  
+
+.tile.is-empty {
+    background: transparent;
+}
+
+.btn {
+    background: var(--buttonColor);
+    color: var(--buttonTextColor);
+    padding: 0.25em 0.5em;
+    box-sizing: border-box;
+    vertical-align: top;
+    border-radius: 0;
+    margin: 1rem;
+    -webkit-appearence: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 2rem;
+    text-transform: uppercase;    
+}
+
+.controls {
+    font-size: 2rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 1;
+    flex-grow: 1;
+    padding: 3vmin;
+    flex-wrap: wrap;
+}
+
+.turnsWrapper {
+    border: solid 2px var(--accentColor);
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+@media screen and (orientation: landscape) {
+    .app {
+        flex-direction: row;
+    }   
+
+    .controls {
+        flex-direction: column;
+    }
+}
