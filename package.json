@@ -4,14 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "make": "elm make Fifteen.elm --output fifteen.js",
-    "dev": "chokidar '**/*.elm' -c 'npm run make'"
+    "test": "elm-test --watch",
+    "make": "elm make ./src/Fifteen.elm --output ./fifteen.js",
+    "watchElm": "chokidar ./src/**/*.elm -c \"npm run make\"",
+    "buildCss": "postcss ./src/*.css --use autoprefixer -d ./",
+    "watchCss": "postcss ./src/*.css --use autoprefixer -w -d ./",
+    "dev": "parallelshell \"npm run watchElm\" \"npm run watchCss\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chokidar-cli": "^1.2.0"
+    "autoprefixer": "^7.2.3",
+    "chokidar-cli": "^1.2.0",
+    "parallelshell": "^3.0.2",
+    "postcss-cli": "^4.1.1"
   }
 }
