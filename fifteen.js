@@ -11377,6 +11377,97 @@ var _fbedussi$elm15$Counter$counter = function (number) {
 			_fbedussi$elm15$Counter$splitAndConvertNumber(number)));
 };
 
+var _fbedussi$elm15$Icons$okIcon = function (_p0) {
+	var _p1 = _p0;
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$height('27.236'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width('36.556'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 36.555771 27.236483'),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$path,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$d('M14.115 27.236L1.105 13.581a4.002 4.002 0 0 1 5.792-5.52l7.473 7.84L29.784 1.113a4.003 4.003 0 0 1 5.658.117 4.003 4.003 0 0 1-.117 5.658z'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _fbedussi$elm15$Icons$resetIcon = function (_p2) {
+	var _p3 = _p2;
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$height('40.203'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width('39.935'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 39.935 40.203'),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$path,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$d('M39.908 19.103c.6 11.5-8.6 21.1-20 21.1-10.3 0-18.8-7.8-19.9-17.8-.1-1.2.8-2.2 2-2.2h2c1 0 1.9.8 2 1.8.9 6.9 6.8 12.2 13.9 12.2 7.9 0 14.4-6.7 14-14.7-.3-6.9-5.8-12.6-12.7-13.3-4.2-.4-8.2 1.1-11.2 4l1.4 1.4c.6.6.2 1.6-.6 1.7l-8.1 1c-.6.1-1.2-.5-1.1-1.1l1-8.1c.1-.8 1.1-1.1 1.7-.6l1.4 1.4c3.9-3.9 9-6 14.5-5.9 10.5.4 19.1 8.8 19.7 19.1z'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _fbedussi$elm15$Icons$shuffleIcon = function (_p4) {
+	var _p5 = _p4;
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$height('71.065'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width('84.6'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 84.599998 71.064659'),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$path,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$d('M64.4 29.765c1 .9 2.2 1.4 3.4 1.4 1.3 0 2.7-.5 3.6-1.6l13.2-14-13.1-14c-1.9-2-5.1-2.1-7.1-.2-2 1.9-2.1 5.1-.2 7.1l2 2.1c-6.7.3-13 3.3-17.5 8.2l-8.3 9.3-8.3-9.2c-4.8-5.3-11.5-8.3-18.6-8.3H5c-2.8 0-5 2.2-5 5s2.2 5 5 5h8.5c4.2 0 8.3 1.8 11.1 5l9 10-9 10c-2.8 3.2-6.9 5-11.1 5H5c-2.8 0-5 2.2-5 5s2.2 5 5 5h8.5c7.1 0 13.8-3 18.6-8.3l8.3-9.2 8.3 9.2c4.5 5 10.8 8 17.5 8.2l-2 2.1c-1.9 2-1.8 5.2.2 7.1 1 .9 2.2 1.4 3.4 1.4 1.3 0 2.7-.5 3.6-1.6l13.2-14-13.1-13.9c-1.9-2-5.1-2.1-7.1-.2-2 1.9-2.1 5.1-.2 7.1l1.9 2c-3.8-.3-7.4-2-10-4.9l-9-10 9-10c2.6-2.9 6.2-4.6 10-4.9l-1.9 2c-1.8 2-1.8 5.2.2 7.1z'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+
 var _knledg$touch_events$TouchEvents$emptyTouch = {clientX: 0, clientY: 0};
 var _knledg$touch_events$TouchEvents$Touch = F2(
 	function (a, b) {
@@ -11447,67 +11538,6 @@ var _knledg$touch_events$TouchEvents$getDirectionX = F2(
 	function (start, end) {
 		return (_elm_lang$core$Native_Utils.cmp(start, end) > 0) ? _knledg$touch_events$TouchEvents$Left : _knledg$touch_events$TouchEvents$Right;
 	});
-
-var _fbedussi$elm15$Icons$resetIcon = function (_p0) {
-	var _p1 = _p0;
-	return A2(
-		_elm_lang$svg$Svg$svg,
-		{
-			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$height('40.203'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('39.935'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 39.935 40.203'),
-					_1: {ctor: '[]'}
-				}
-			}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$svg$Svg$path,
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$d('M39.908 19.103c.6 11.5-8.6 21.1-20 21.1-10.3 0-18.8-7.8-19.9-17.8-.1-1.2.8-2.2 2-2.2h2c1 0 1.9.8 2 1.8.9 6.9 6.8 12.2 13.9 12.2 7.9 0 14.4-6.7 14-14.7-.3-6.9-5.8-12.6-12.7-13.3-4.2-.4-8.2 1.1-11.2 4l1.4 1.4c.6.6.2 1.6-.6 1.7l-8.1 1c-.6.1-1.2-.5-1.1-1.1l1-8.1c.1-.8 1.1-1.1 1.7-.6l1.4 1.4c3.9-3.9 9-6 14.5-5.9 10.5.4 19.1 8.8 19.7 19.1z'),
-					_1: {ctor: '[]'}
-				},
-				{ctor: '[]'}),
-			_1: {ctor: '[]'}
-		});
-};
-var _fbedussi$elm15$Icons$shuffleIcon = function (_p2) {
-	var _p3 = _p2;
-	return A2(
-		_elm_lang$svg$Svg$svg,
-		{
-			ctor: '::',
-			_0: _elm_lang$svg$Svg_Attributes$height('71.065'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('84.6'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 84.599998 71.064659'),
-					_1: {ctor: '[]'}
-				}
-			}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$svg$Svg$path,
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$d('M64.4 29.765c1 .9 2.2 1.4 3.4 1.4 1.3 0 2.7-.5 3.6-1.6l13.2-14-13.1-14c-1.9-2-5.1-2.1-7.1-.2-2 1.9-2.1 5.1-.2 7.1l2 2.1c-6.7.3-13 3.3-17.5 8.2l-8.3 9.3-8.3-9.2c-4.8-5.3-11.5-8.3-18.6-8.3H5c-2.8 0-5 2.2-5 5s2.2 5 5 5h8.5c4.2 0 8.3 1.8 11.1 5l9 10-9 10c-2.8 3.2-6.9 5-11.1 5H5c-2.8 0-5 2.2-5 5s2.2 5 5 5h8.5c7.1 0 13.8-3 18.6-8.3l8.3-9.2 8.3 9.2c4.5 5 10.8 8 17.5 8.2l-2 2.1c-1.9 2-1.8 5.2.2 7.1 1 .9 2.2 1.4 3.4 1.4 1.3 0 2.7-.5 3.6-1.6l13.2-14-13.1-13.9c-1.9-2-5.1-2.1-7.1-.2-2 1.9-2.1 5.1-.2 7.1l1.9 2c-3.8-.3-7.4-2-10-4.9l-9-10 9-10c2.6-2.9 6.2-4.6 10-4.9l-1.9 2c-1.8 2-1.8 5.2.2 7.1z'),
-					_1: {ctor: '[]'}
-				},
-				{ctor: '[]'}),
-			_1: {ctor: '[]'}
-		});
-};
 
 var _fbedussi$elm15$Fifteen$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
@@ -11758,21 +11788,37 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
-							ctor: '::',
-							_0: {
-								ctor: '_Tuple2',
-								_0: 'display',
-								_1: model.success ? 'block' : 'none'
-							},
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
+					_0: _elm_lang$html$Html_Attributes$class('success'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'display',
+									_1: model.success ? 'block' : 'none'
+								},
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Complete!'),
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('okIcon'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _fbedussi$elm15$Icons$okIcon(
+								{ctor: '_Tuple0'}),
+							_1: {ctor: '[]'}
+						}),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -11841,43 +11887,54 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 							_1: {
 								ctor: '::',
 								_0: A2(
-									_elm_lang$html$Html$button,
+									_elm_lang$html$Html$div,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('btn scrambleBtn'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Scramble),
-											_1: {ctor: '[]'}
-										}
+										_0: _elm_lang$html$Html_Attributes$class('btnWrapper'),
+										_1: {ctor: '[]'}
 									},
 									{
 										ctor: '::',
-										_0: _fbedussi$elm15$Icons$shuffleIcon(
-											{ctor: '_Tuple0'}),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$button,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('btn resetBtn'),
-											_1: {
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Reset),
+												_0: _elm_lang$html$Html_Attributes$class('btn scrambleBtn'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Scramble),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _fbedussi$elm15$Icons$shuffleIcon(
+													{ctor: '_Tuple0'}),
 												_1: {ctor: '[]'}
-											}
-										},
-										{
+											}),
+										_1: {
 											ctor: '::',
-											_0: _fbedussi$elm15$Icons$resetIcon(
-												{ctor: '_Tuple0'}),
+											_0: A2(
+												_elm_lang$html$Html$button,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('btn resetBtn'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(_fbedussi$elm15$Fifteen$Reset),
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: _fbedussi$elm15$Icons$resetIcon(
+														{ctor: '_Tuple0'}),
+													_1: {ctor: '[]'}
+												}),
 											_1: {ctor: '[]'}
-										}),
-									_1: {ctor: '[]'}
-								}
+										}
+									}),
+								_1: {ctor: '[]'}
 							}
 						}),
 					_1: {ctor: '[]'}
