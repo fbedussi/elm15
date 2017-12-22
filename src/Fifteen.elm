@@ -6,7 +6,12 @@ import Html.Attributes exposing (..)
 import Random exposing (generate)
 import Random.List exposing (shuffle)
 import List.Extra exposing (elemIndex, swapAt)
+import TouchEvents exposing (onTouchStart)
 
+import Counter exposing (counter)
+import Icons exposing (..)
+
+main : Program Never Model Msg
 main =
   Html.program
     { init = init
@@ -94,10 +99,11 @@ update msg model =
           then
             let 
               newTiles = swapTiles clickedTile model.tiles
+              updatedCounter = model.turns + 1
             in
               Model 
                 newTiles
-                (model.turns + 1)
+                updatedCounter
                 (newTiles == model.correctSequence)
                 model.correctSequence
           else
@@ -112,20 +118,24 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.none
 
-
 -- VIEW
 view : Model -> Html Msg
 view model =
     div [ class "app" ]
     [ 
       div [style [("display", (if model.success then "block" else "none"))]] [ text "Complete!" ]
-      , div [ class "board"] (List.map (\val -> button [ class (if val /= 0 then "tile" else "tile is-empty"), onClick (Move val)] [text (if val /= 0 then toString val else "")]) model.tiles)
+      ,div 
+        [ class "board"]
+        (List.map
+          (\val -> button 
+            [ class (if val /= 0 then "tile" else "tile is-empty"), onTouchStart (\_ -> Move val), onClick (Move val)]
+            [text (if val /= 0 then toString val else "")]) model.tiles
+          )
       ,div [class "controls"] [
         div [class "turnsWrapper"] [ 
-          span [class "turnsLabel"] [text "Turns: "]
-          ,span [class "turns"] [ text <| toString model.turns ] 
+          counter model.turns
         ]
-        ,button [class "btn scrambleBtn", onClick Scramble ] [text "scramble"]
-        ,button [class "btn resetBtn", onClick Reset] [text "reset"]
+        ,button [class "btn scrambleBtn", onClick Scramble ] [shuffleIcon () ]
+        ,button [class "btn resetBtn", onClick Reset] [resetIcon ()]
       ]
     ]

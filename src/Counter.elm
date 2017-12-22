@@ -1,35 +1,29 @@
-module Counter exposing (..)
+module Counter exposing (counter)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
 
--- MODEL
-type alias Model =
-  Int
+splitAndConvertNumber: Int -> List String
+splitAndConvertNumber number =
+  number |>
+  toString |>
+  String.padLeft 2 '0' |>
+  String.split ""
 
-init : Model
-init =
-  0
+counter : Int -> Html msg
+counter number =
+  div [ class "counter" ] (List.map digit (splitAndConvertNumber number))
 
 
--- UPDATE
-type Msg
-  = Increment
-  | Decrement
-
-update : Msg -> Model -> Model
-update msg model =
-  case msg of
-    Increment ->
-      model + 1
-
-    Decrement ->
-      model - 1
-
--- VIEW
-view : Model -> Html msg
-view model =
-    div [ class "counter" ]
-    [ 
-      text <| toString model
+digit : String -> Html msg
+digit digit =
+  span 
+    [class ("counter-digit digit-" ++ digit)] [
+      div
+        [class "counter-digitInner"]
+        (List.map 
+          (\digit -> div [] [text digit])
+          [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        )
     ]
+    
