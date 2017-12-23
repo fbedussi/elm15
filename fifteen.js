@@ -11579,9 +11579,9 @@ var _fbedussi$elm15$Fifteen$Model = F4(
 	function (a, b, c, d) {
 		return {tiles: a, turns: b, success: c, correctSequence: d};
 	});
-var _fbedussi$elm15$Fifteen$init = {
-	ctor: '_Tuple2',
-	_0: A4(
+var _fbedussi$elm15$Fifteen$resetModel = function (_p0) {
+	var _p1 = _p0;
+	return A4(
 		_fbedussi$elm15$Fifteen$Model,
 		{
 			ctor: '::',
@@ -11714,7 +11714,12 @@ var _fbedussi$elm15$Fifteen$init = {
 					}
 				}
 			}
-		}),
+		});
+};
+var _fbedussi$elm15$Fifteen$init = {
+	ctor: '_Tuple2',
+	_0: _fbedussi$elm15$Fifteen$resetModel(
+		{ctor: '_Tuple0'}),
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _fbedussi$elm15$Fifteen$Reset = {ctor: 'Reset'};
@@ -11723,37 +11728,38 @@ var _fbedussi$elm15$Fifteen$NewSequence = function (a) {
 };
 var _fbedussi$elm15$Fifteen$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'Scramble':
 				return {
 					ctor: '_Tuple2',
-					_0: model,
+					_0: _fbedussi$elm15$Fifteen$resetModel(
+						{ctor: '_Tuple0'}),
 					_1: A2(
 						_elm_lang$core$Random$generate,
 						_fbedussi$elm15$Fifteen$NewSequence,
 						_elm_community$random_extra$Random_List$shuffle(model.tiles))
 				};
 			case 'NewSequence':
-				var _p1 = _p0._0;
+				var _p3 = _p2._0;
 				return {
 					ctor: '_Tuple2',
 					_0: A4(
 						_fbedussi$elm15$Fifteen$Model,
-						_p1,
+						_p3,
 						model.turns,
-						_elm_lang$core$Native_Utils.eq(_p1, model.correctSequence),
+						_elm_lang$core$Native_Utils.eq(_p3, model.correctSequence),
 						model.correctSequence),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'Move':
-				var _p2 = _p0._0;
+				var _p4 = _p2._0;
 				return {
 					ctor: '_Tuple2',
 					_0: function () {
-						if (A2(_fbedussi$elm15$Fifteen$isClickTileNextToZero, _p2, model.tiles)) {
+						if (A2(_fbedussi$elm15$Fifteen$isClickTileNextToZero, _p4, model.tiles)) {
 							var updatedCounter = model.turns + 1;
-							var newTiles = A2(_fbedussi$elm15$Fifteen$swapTiles, _p2, model.tiles);
+							var newTiles = A2(_fbedussi$elm15$Fifteen$swapTiles, _p4, model.tiles);
 							return A4(
 								_fbedussi$elm15$Fifteen$Model,
 								newTiles,
@@ -11842,7 +11848,7 @@ var _fbedussi$elm15$Fifteen$view = function (model) {
 									_1: {
 										ctor: '::',
 										_0: _knledg$touch_events$TouchEvents$onTouchStart(
-											function (_p3) {
+											function (_p5) {
 												return _fbedussi$elm15$Fifteen$Move(val);
 											}),
 										_1: {

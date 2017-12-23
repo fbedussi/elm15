@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 *:focus {
@@ -50,7 +51,7 @@ body,
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
-    background-color: var(--accentColor);
+    background-color: limegreen;
     color: var(--secondaryColor);
     padding: 1em;
     transform: rotate(-45deg);
@@ -64,6 +65,7 @@ body,
 .board {
     flex-shrink: 0;
     width: calc(92vmin + 8px);
+    height: calc(92vmin + 8px);
     margin: 3vmin;
     padding: 2vmin;
     background-color: var(--boardColor);
@@ -146,6 +148,10 @@ body,
     .app {
         flex-direction: row;
     }   
+
+    .success {
+        left: -10em;
+    }
 
     .controls {
         justify-content: flex-start;

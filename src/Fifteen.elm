@@ -37,13 +37,18 @@ type alias Model =
     }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( Model
+resetModel : () -> Model
+resetModel () =
+    Model
         [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 ]
         0
         False
         [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 ]
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( resetModel ()
     , Cmd.none
     )
 
@@ -115,7 +120,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Scramble ->
-            ( model, generate NewSequence (shuffle model.tiles) )
+            ( resetModel (), generate NewSequence (shuffle model.tiles) )
 
         NewSequence newSequence ->
             ( Model
