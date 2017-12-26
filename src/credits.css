@@ -1,0 +1,44 @@
+.creditsPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.creditsHeader {
+    background-color: var(--tertiaryColor);
+    color: var(--secondaryColor);
+    text-transform: uppercase;
+    padding: 1em;
+    font-size: 1.5rem;
+    text-align: center; 
+    width: 100%;
+}
+
+.iconsCredit {
+    flex: 1;
+}
+
+.iconsCredit-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+}
+
+.iconsCredit-icon {
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.iconsCredit-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent2Color);
+}
+
+.backToHome {
+    margin: 1em;
+}

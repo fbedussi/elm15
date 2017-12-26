@@ -9,7 +9,7 @@
 
 <body>
     <div id="main"></div>
-    <script src="fifteen.js"></script>
+    <script src="app.js"></script>
     <script>
         var node = document.getElementById('main');
         var app = Elm.Fifteen.embed(node);
@@ -18,9 +18,9 @@
     </script>
 
     <script type="text/javascript">
-        window.onbeforeunload = function () {
-            return "If you reload the page the puzzle will reset";
-        }
+        // window.onbeforeunload = function () {
+        //     return "If you reload the page the puzzle will reset";
+        // }
     </script>
 </body>
 
