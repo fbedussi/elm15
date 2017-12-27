@@ -12750,7 +12750,7 @@ var _fbedussi$elm15$Routing$matchers = _evancz$url_parser$UrlParser$oneOf(
 			_0: A2(
 				_evancz$url_parser$UrlParser$map,
 				_fbedussi$elm15$Models$Home,
-				_evancz$url_parser$UrlParser$s('home')),
+				_evancz$url_parser$UrlParser$s('elm15')),
 			_1: {
 				ctor: '::',
 				_0: A2(
