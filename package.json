@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "elm-test --watch",
-    "make": "elm make ./src/App.elm --output ./app.js",
-    "makeDebug": "elm make ./src/App.elm --debug --output ./app.js",
+    "make": "elm make ./src/App.elm --output ./public/app.js",
+    "makeDebug": "elm make ./src/App.elm --debug --output ./public/app.js",
     "watchElm": "chokidar ./src/**/*.elm -c \"npm run make\"",
     "watchElmDebug": "chokidar ./src/**/*.elm -c \"npm run makeDebug\"",
     "buildCss": "postcss ./src/*.css --use autoprefixer -d ./",
     "watchCss": "postcss ./src/*.css --use autoprefixer -w -d ./",
-    "server": "live-server --port=8080 --entry-file=./index.html",
+    "server": "live-server --port=8080 public/",
     "dev": "parallelshell \"npm run watchElm\" \"npm run watchCss\" \"npm run server\"",
     "debug": "parallelshell \"npm run watchElmDebug\" \"npm run watchCss\" \"npm run server\""
   },
