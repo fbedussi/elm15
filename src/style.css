@@ -121,10 +121,15 @@ body,
     text-decoration: none;
     display: inline-block;
     text-align: center;
-    padding: 1em;
+    padding: 0.5rem;
+    height: 2rem;
     background: var(--primaryColor);
     color: var(--buttonTextColor);
     border-radius: 3px;
+}
+
+.linkBtn svg {
+    height: 1rem;
 }
 
 .creditBtn {

@@ -9,8 +9,8 @@
     "makeDebug": "elm make ./src/App.elm --debug --output ./public/app.js",
     "watchElm": "chokidar ./src/**/*.elm -c \"npm run make\"",
     "watchElmDebug": "chokidar ./src/**/*.elm -c \"npm run makeDebug\"",
-    "buildCss": "postcss ./src/*.css --use autoprefixer -d ./",
-    "watchCss": "postcss ./src/*.css --use autoprefixer -w -d ./",
+    "buildCss": "postcss ./src/*.css --use autoprefixer -d ./public",
+    "watchCss": "postcss ./src/*.css --use autoprefixer -w -d ./public",
     "server": "live-server --port=8080 public/",
     "dev": "parallelshell \"npm run watchElm\" \"npm run watchCss\" \"npm run server\"",
     "debug": "parallelshell \"npm run watchElmDebug\" \"npm run watchCss\" \"npm run server\""
